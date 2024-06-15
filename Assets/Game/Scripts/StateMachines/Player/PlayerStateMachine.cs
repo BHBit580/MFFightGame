@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(WeaponActivationHandler))]
 [RequireComponent(typeof(InputReader))]
@@ -12,6 +13,7 @@ public class PlayerStateMachine : StateMachine
     [field: Header("{Dependencies}")]
     [field: SerializeField] public WeaponDamage[] WeaponDamage { get; private set; }
     [field: SerializeField] public Feet Feet { get; private set; }
+    [field: SerializeField] public Volume Volume { get; private set; }
     
     [field: Header("{Camera Shake Settings}")]
     [field: SerializeField] public CinemachineShake CinemachineShake { get; private set; }
@@ -31,7 +33,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float JumpForce { get; private set; }
     
     [field: Header("{Basic Attacks}")]
-    [field: SerializeField] public List<ComboAttack> BasicAttacks { get; private set; }
+    [field: SerializeField] public List<ComboAttack> PunchAttacks { get; private set; }
+    [field: SerializeField] public List<ComboAttack> KickAttacks { get; private set; }
     
     
     public InputReader InputReader { get; private set; }

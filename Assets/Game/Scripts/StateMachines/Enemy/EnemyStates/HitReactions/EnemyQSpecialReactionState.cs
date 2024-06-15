@@ -31,7 +31,7 @@ public class EnemyQSpecialReactionState : EnemyBaseState
         
         if(currentInfo.shortNameHash == StandUpHash && currentInfo.normalizedTime >= 1f)
         {
-            stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
         }
     }
 

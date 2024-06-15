@@ -3,47 +3,39 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class EnemyIdleState : EnemyBaseState
+public class EnemyFreeLookState : EnemyBaseState
 {
-    private readonly int FightIdle = Animator.StringToHash("FightIdle");
+    private readonly int WalkingHash = Animator.StringToHash("Walking");
+
     private const float CrossFadeDuration = 0.1f;
     
-    
-    public EnemyIdleState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public EnemyFreeLookState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
     }
 
     public override void Enter()
     {
+        stateMachine.Animator.CrossFadeInFixedTime(WalkingHash , CrossFadeDuration);
         stateMachine.CharacterHealth.CharacterGotNormalHitEvent += GoToNormalHitState;
         stateMachine.QSpecialAnimationEvent.RegisterListener(GoToQSpecialHitState);
-        stateMachine.Animator.CrossFadeInFixedTime(FightIdle , CrossFadeDuration);
-
-        GoToChaseState();
     }
 
     public override void Tick(float deltaTime)
     {
-        stateMachine.transform.position =
-            new Vector3(stateMachine.transform.position.x, stateMachine.transform.position.y, 0);
+        RestrictPosition();
+        stateMachine.transform.Translate(- Vector3.forward * (stateMachine.Speed * deltaTime));
+        
+        if (DistanceBetweenPlayerAndEnemy() < stateMachine.MinDistanceToStartAttack)
+        {
+            stateMachine.SwitchState(new EnemyCombactState(stateMachine));
+        }
     }
-
-    private void GoToChaseState()
+    
+    private void RestrictPosition()
     {
-        if (stateMachine.isFirstTimeChase)
-        {
-            int randomTime = Random.Range(1, 3);
-            DOVirtual.DelayedCall(randomTime, () => {
-                stateMachine.SwitchState(new EnemyChaseState(stateMachine));
-                stateMachine.isFirstTimeChase = false;
-            });
-        }
-        else
-        {
-            stateMachine.SwitchState(new EnemyChaseState(stateMachine));
-        }
+        stateMachine.transform.position = new Vector3(stateMachine.transform.position.x, stateMachine.transform.position.y, 0);
     }
-
+    
     private void GoToNormalHitState()
     {
         stateMachine.SwitchState(new EnemyNHitReactionState(stateMachine));

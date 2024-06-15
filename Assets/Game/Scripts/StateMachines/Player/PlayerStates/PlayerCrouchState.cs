@@ -18,6 +18,7 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.GetComponent<CharacterHealth>().SetInvulnerable(true);
         playerCollider = stateMachine.GetComponent<CapsuleCollider>();
         initialHeight = playerCollider.height;
         initialCentreY = playerCollider.center.y;
@@ -36,7 +37,7 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void Exit()
     {
-        
+        stateMachine.GetComponent<CharacterHealth>().SetInvulnerable(false);
     }
     
     private void SetCapsuleValues(float height , float centreY)

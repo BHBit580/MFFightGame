@@ -25,7 +25,7 @@ public class EnemyNHitReactionState : EnemyBaseState , IHasCoolDown
         }
         else
         {
-            stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
         }
     }
 
@@ -33,7 +33,7 @@ public class EnemyNHitReactionState : EnemyBaseState , IHasCoolDown
     {
         if(CheckAnimationPercentCompleted(stateMachine.Animator , 0.6f  , HitReactionHash))
         {
-            stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
         }
     }
     

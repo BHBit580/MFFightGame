@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour , PlayerControls.IPlayerActionMapActions
 {
     public Vector2 MovementValue { get; private set; }
-    public bool BasicAttack { get; private set; }
+    public bool PunchAttack { get; private set; }
+    public bool KickAttack { get; private set; }
     public bool IsBlocking { get; private set; }
     public bool IsCrouching { get; private set; }
     public event Action JumpEvent;
@@ -24,16 +25,16 @@ public class InputReader : MonoBehaviour , PlayerControls.IPlayerActionMapAction
     {
         MovementValue = context.ReadValue<Vector2>();
     }
-
-    public void OnNormalAttack(InputAction.CallbackContext context)
+    
+    public void OnPunch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            BasicAttack = true;
+            PunchAttack = true;
         }
         else if (context.canceled)
         {
-            BasicAttack = false;
+            PunchAttack = false;
         }
     }
 
@@ -72,6 +73,18 @@ public class InputReader : MonoBehaviour , PlayerControls.IPlayerActionMapAction
         else
         {
             IsCrouching = false;
+        }
+    }
+
+    public void OnKick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            KickAttack = true;
+        }
+        else if (context.canceled)
+        {
+            KickAttack = false;
         }
     }
 

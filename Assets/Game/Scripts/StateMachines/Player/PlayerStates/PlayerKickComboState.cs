@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPunchComboState : PlayerBaseState
+public class PlayerKickComboState : PlayerBaseState
 {
     private ComboAttack _currentAttack;
     private int _currentIndex;
     private float _timer;
     
-    public PlayerPunchComboState(PlayerStateMachine stateMachine , int attackIndex) : base(stateMachine)
+    public PlayerKickComboState(PlayerStateMachine stateMachine , int attackIndex) : base(stateMachine)
     {
         _currentIndex = attackIndex;
-        _currentAttack = stateMachine.PunchAttacks[_currentIndex];
+        _currentAttack = stateMachine.KickAttacks[_currentIndex];
     }
 
     public override void Enter()
@@ -34,7 +34,7 @@ public class PlayerPunchComboState : PlayerBaseState
 
         if (normalizedTime > _currentAttack.MinimumNormalizedTime && _timer < _currentAttack.ComboWindowTime)
         {
-            if (stateMachine.InputReader.PunchAttack)
+            if (stateMachine.InputReader.KickAttack)
             {
                 TryComboAttack();
             }
@@ -53,7 +53,7 @@ public class PlayerPunchComboState : PlayerBaseState
         
         stateMachine.SwitchState
         (
-            new PlayerPunchComboState(stateMachine , _currentIndex)
+            new PlayerKickComboState(stateMachine , _currentIndex)
         );
     }
     

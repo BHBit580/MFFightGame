@@ -58,7 +58,7 @@ public class PlayerFreeLookState : PlayerBaseState
     
     private void SwitchToOtherStates()
     {
-        if (stateMachine.InputReader.BasicAttack)
+        if (stateMachine.InputReader.PunchAttack)
         {
             stateMachine.SwitchState(new PlayerPunchComboState(stateMachine , 0));
         }
@@ -71,6 +71,11 @@ public class PlayerFreeLookState : PlayerBaseState
         if (stateMachine.InputReader.IsCrouching)
         {
             stateMachine.SwitchState(new PlayerCrouchState(stateMachine));
+        }
+
+        if (stateMachine.InputReader.KickAttack)
+        {
+            stateMachine.SwitchState(new PlayerKickComboState(stateMachine,0));
         }
     }
 

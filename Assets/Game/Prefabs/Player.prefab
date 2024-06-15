@@ -1,5 +1,104 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2738351724318629279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7453050796179489300}
+  - component: {fileID: 3294845012826439640}
+  - component: {fileID: 31697544959727239}
+  m_Layer: 0
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7453050796179489300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738351724318629279}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3187607922489961687}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3294845012826439640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738351724318629279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.46, y: 0.06, z: 0.32}
+  m_Center: {x: -0.21, y: 0, z: 0}
+--- !u!114 &31697544959727239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738351724318629279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de7b3724fb62044a81916d3a76980f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.1
+  onGround: 0
+--- !u!1 &3164371292813976118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6453385991116786246}
+  m_Layer: 0
+  m_Name: FollowPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6453385991116786246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3164371292813976118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -7.15, y: 1.4, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3187607922489961687}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &4996454594821016831
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +111,7 @@ GameObject:
   - component: {fileID: 3792163161008869650}
   - component: {fileID: 3007521924318077065}
   m_Layer: 0
-  m_Name: WeaponLogic
+  m_Name: WeaponLogicRightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,6 +178,7 @@ GameObject:
   - component: {fileID: 8345543169561255619}
   - component: {fileID: 455768611440028074}
   - component: {fileID: 5878795097819641033}
+  - component: {fileID: 9026228984149030641}
   - component: {fileID: 8997874915972420222}
   - component: {fileID: 1477712058146116661}
   - component: {fileID: 1670027176840290600}
@@ -104,6 +204,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6616192007606444552}
+  - {fileID: 7453050796179489300}
+  - {fileID: 6453385991116786246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!136 &8345543169561255619
@@ -125,7 +227,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.21
+  m_Radius: 0.25
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: 0}
@@ -154,7 +256,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!95 &5878795097819641033
 Animator:
@@ -177,6 +279,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9026228984149030641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091981238321835246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327298bf8d4b3b046a475019994584b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8997874915972420222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e2877dd1f0e5a4f8abf21d3743ccca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
+  leftHand: {fileID: 1893185871952499979}
+  rightHand: {fileID: 4996454594821016831}
 --- !u!114 &5565023132154072739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,38 +342,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0901861d85873046be0648688195157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <QSpecialBall>k__BackingField: {fileID: 183996, guid: 6740e56bb3bbad549a776be98016c0d0, type: 3}
-  <QSpecialOffset>k__BackingField: {x: -0.8, y: 1.3, z: 0}
-  <WalkingSpeed>k__BackingField: 3
-  <JumpForce>k__BackingField: 0
-  <Feet>k__BackingField: {fileID: 0}
   <WeaponDamage>k__BackingField:
-  - {fileID: 0}
-  <BasicAttacks>k__BackingField:
-  - <AnimationName>k__BackingField: Punch2
-    <CrossFadeDuration>k__BackingField: 0.1
-    <Damage>k__BackingField: 2
-    <KnockBack>k__BackingField: 0
-    <MinimumNormalizedTime>k__BackingField: 0.478
-    <ComboWindowTime>k__BackingField: 0.584
+  - {fileID: 4802343050924627759}
+  - {fileID: 3007521924318077065}
+  <Feet>k__BackingField: {fileID: 31697544959727239}
+  <Volume>k__BackingField: {fileID: 0}
+  <CinemachineShake>k__BackingField: {fileID: 0}
+  <ShakeIntensity>k__BackingField: 2
+  <ShakeTime>k__BackingField: 0.1
+  <VfxHitParticle>k__BackingField: {fileID: 5999947971752705156, guid: ef9335af534e88d47b3a0438def02b0a, type: 3}
+  <VfxHitOffset>k__BackingField: {x: 0, y: 1.5, z: 0}
+  <QSpecialBall>k__BackingField: {fileID: 183996, guid: 6740e56bb3bbad549a776be98016c0d0, type: 3}
+  <QSpecialOffset>k__BackingField: {x: -1, y: 1.25, z: 0}
+  <WalkingSpeed>k__BackingField: 2
+  <JumpForce>k__BackingField: 4.5
+  <PunchAttacks>k__BackingField:
   - <AnimationName>k__BackingField: Punch1
     <CrossFadeDuration>k__BackingField: 0.1
-    <Damage>k__BackingField: 1
-    <KnockBack>k__BackingField: 0
-    <MinimumNormalizedTime>k__BackingField: 0.367
-    <ComboWindowTime>k__BackingField: 0.807
+    <Damage>k__BackingField: 5
+    <KnockBack>k__BackingField: 1
+    <MinimumNormalizedTime>k__BackingField: 0.264
+    <ComboWindowTime>k__BackingField: 0.5
+  - <AnimationName>k__BackingField: Punch2
+    <CrossFadeDuration>k__BackingField: 0.1
+    <Damage>k__BackingField: 5
+    <KnockBack>k__BackingField: 2
+    <MinimumNormalizedTime>k__BackingField: 0.316
+    <ComboWindowTime>k__BackingField: 0.555
   - <AnimationName>k__BackingField: Punch3
     <CrossFadeDuration>k__BackingField: 0.1
     <Damage>k__BackingField: 5
-    <KnockBack>k__BackingField: 0
-    <MinimumNormalizedTime>k__BackingField: 0.591
-    <ComboWindowTime>k__BackingField: 0.706
+    <KnockBack>k__BackingField: 1
+    <MinimumNormalizedTime>k__BackingField: 0.448
+    <ComboWindowTime>k__BackingField: 0.708
   - <AnimationName>k__BackingField: Punch4
     <CrossFadeDuration>k__BackingField: 0.1
     <Damage>k__BackingField: 5
-    <KnockBack>k__BackingField: 0
-    <MinimumNormalizedTime>k__BackingField: 1
-    <ComboWindowTime>k__BackingField: 0.504
+    <KnockBack>k__BackingField: 5
+    <MinimumNormalizedTime>k__BackingField: 0.799
+    <ComboWindowTime>k__BackingField: 0.513
+  <KickAttacks>k__BackingField: []
 --- !u!1001 &4705046114178629076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,6 +446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OldManModel
       objectReference: {fileID: 0}
+    - target: {fileID: 6561282888786421983, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
+      propertyPath: m_Name
+      value: WeaponLogicLeftHand
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 597870689351067711, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
     - {fileID: 1828988891151515760, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
@@ -346,6 +472,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5641867696372004224, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
   m_PrefabInstance: {fileID: 4705046114178629076}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1893185871952499979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6561282888786421983, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
+  m_PrefabInstance: {fileID: 4705046114178629076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4802343050924627759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 283435460580043515, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
+  m_PrefabInstance: {fileID: 4705046114178629076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893185871952499979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72675b2c3b154754dac4b46da9877010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6616192007606444552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1917056868083818460, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}

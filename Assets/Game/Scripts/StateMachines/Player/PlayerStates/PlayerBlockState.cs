@@ -13,6 +13,7 @@ public class PlayerBlockState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.GetComponent<CharacterHealth>().SetInvulnerable(true);
         stateMachine.Animator.CrossFadeInFixedTime(BlockHash , CrossFadeDuration);
     }
 
@@ -26,6 +27,6 @@ public class PlayerBlockState : PlayerBaseState
 
     public override void Exit()
     {
-        
+        stateMachine.GetComponent<CharacterHealth>().SetInvulnerable(false);
     }
 }

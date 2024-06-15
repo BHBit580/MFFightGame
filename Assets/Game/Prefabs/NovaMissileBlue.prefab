@@ -19358,7 +19358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdff5c970891f346b6a74ee585a3ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 6
   QSpecialAnimationEvent: {fileID: 11400000, guid: 09acbb76438844b4d92e39f522a4cae4, type: 2}
 --- !u!135 &3184170841325215760
 SphereCollider:

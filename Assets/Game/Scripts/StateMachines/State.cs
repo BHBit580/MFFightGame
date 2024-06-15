@@ -43,6 +43,9 @@ public abstract class State
     protected bool CheckAnimationPercentCompleted(Animator animator , float normalizedTime ,  int hash)
     {
         AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
+        
+        if (animator.IsInTransition(0)) return false;
+        
         return currentInfo.normalizedTime >= normalizedTime && currentInfo.shortNameHash == hash;
     }
 }

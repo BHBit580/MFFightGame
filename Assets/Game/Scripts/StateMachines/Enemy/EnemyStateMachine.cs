@@ -16,8 +16,8 @@ public class EnemyStateMachine : StateMachine
     [field: Header("Special Attack Settings")]
     [field: SerializeField] public Vector3 SpecialAttackOffset { get; private set; }
     [field: SerializeField] public float SpecialAttackRange { get; private set; }
-    [field: SerializeField] public float SpecialAttackCooldown { get; private set; }
-    [field: SerializeField] public float SpecialAttackDamage { get; private set; }
+    [field: SerializeField] public float SpecialAttackBackwardSpeed { get; private set; }
+    [field: SerializeField] public float SpecialAttackDamage { get; private set; } 
     
     [field: Header("Camera Shake Settings")]
     [field: SerializeField] public CinemachineShake CinemachineShake { get; private set; }
@@ -38,15 +38,16 @@ public class EnemyStateMachine : StateMachine
 
     
 
-
-    [HideInInspector] public bool isFirstTimeChase = true;
+    
     public Animator Animator { get; private set; }
+    public Rigidbody Rigidbody { get; private set; }
     public CharacterHealth CharacterHealth { get; private set; }
 
     private void Start()
     {
+        Rigidbody = GetComponent<Rigidbody>();
         CharacterHealth = GetComponent<CharacterHealth>();
         Animator = GetComponent<Animator>();
-        SwitchState(new EnemyIdleState(this));
+        SwitchState(new EnemyInitialState(this));
     }
 }

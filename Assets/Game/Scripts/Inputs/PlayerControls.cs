@@ -37,7 +37,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""NormalAttack"",
+                    ""name"": ""Punch"",
                     ""type"": ""Button"",
                     ""id"": ""af04a98e-bbe8-40c9-aee8-440e2976dead"",
                     ""expectedControlType"": ""Button"",
@@ -76,6 +76,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""347c8b3b-83eb-4528-9e82-ff7360decfad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Kick"",
+                    ""type"": ""Button"",
+                    ""id"": ""f01cb494-6abf-4027-930d-226c8c6e2a24"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -145,7 +154,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""NormalAttack"",
+                    ""action"": ""Punch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -192,6 +201,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f1476ed-0b25-4b07-81c5-84dbac81c0eb"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -201,11 +221,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // PlayerActionMap
         m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
         m_PlayerActionMap_Movement = m_PlayerActionMap.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerActionMap_NormalAttack = m_PlayerActionMap.FindAction("NormalAttack", throwIfNotFound: true);
+        m_PlayerActionMap_Punch = m_PlayerActionMap.FindAction("Punch", throwIfNotFound: true);
         m_PlayerActionMap_Jump = m_PlayerActionMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActionMap_QSpecial = m_PlayerActionMap.FindAction("QSpecial", throwIfNotFound: true);
         m_PlayerActionMap_Block = m_PlayerActionMap.FindAction("Block", throwIfNotFound: true);
         m_PlayerActionMap_Crouch = m_PlayerActionMap.FindAction("Crouch", throwIfNotFound: true);
+        m_PlayerActionMap_Kick = m_PlayerActionMap.FindAction("Kick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,21 +289,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActionMap;
     private List<IPlayerActionMapActions> m_PlayerActionMapActionsCallbackInterfaces = new List<IPlayerActionMapActions>();
     private readonly InputAction m_PlayerActionMap_Movement;
-    private readonly InputAction m_PlayerActionMap_NormalAttack;
+    private readonly InputAction m_PlayerActionMap_Punch;
     private readonly InputAction m_PlayerActionMap_Jump;
     private readonly InputAction m_PlayerActionMap_QSpecial;
     private readonly InputAction m_PlayerActionMap_Block;
     private readonly InputAction m_PlayerActionMap_Crouch;
+    private readonly InputAction m_PlayerActionMap_Kick;
     public struct PlayerActionMapActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerActionMap_Movement;
-        public InputAction @NormalAttack => m_Wrapper.m_PlayerActionMap_NormalAttack;
+        public InputAction @Punch => m_Wrapper.m_PlayerActionMap_Punch;
         public InputAction @Jump => m_Wrapper.m_PlayerActionMap_Jump;
         public InputAction @QSpecial => m_Wrapper.m_PlayerActionMap_QSpecial;
         public InputAction @Block => m_Wrapper.m_PlayerActionMap_Block;
         public InputAction @Crouch => m_Wrapper.m_PlayerActionMap_Crouch;
+        public InputAction @Kick => m_Wrapper.m_PlayerActionMap_Kick;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -295,9 +318,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @NormalAttack.started += instance.OnNormalAttack;
-            @NormalAttack.performed += instance.OnNormalAttack;
-            @NormalAttack.canceled += instance.OnNormalAttack;
+            @Punch.started += instance.OnPunch;
+            @Punch.performed += instance.OnPunch;
+            @Punch.canceled += instance.OnPunch;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -310,6 +333,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Kick.started += instance.OnKick;
+            @Kick.performed += instance.OnKick;
+            @Kick.canceled += instance.OnKick;
         }
 
         private void UnregisterCallbacks(IPlayerActionMapActions instance)
@@ -317,9 +343,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @NormalAttack.started -= instance.OnNormalAttack;
-            @NormalAttack.performed -= instance.OnNormalAttack;
-            @NormalAttack.canceled -= instance.OnNormalAttack;
+            @Punch.started -= instance.OnPunch;
+            @Punch.performed -= instance.OnPunch;
+            @Punch.canceled -= instance.OnPunch;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -332,6 +358,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Kick.started -= instance.OnKick;
+            @Kick.performed -= instance.OnKick;
+            @Kick.canceled -= instance.OnKick;
         }
 
         public void RemoveCallbacks(IPlayerActionMapActions instance)
@@ -352,10 +381,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IPlayerActionMapActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnNormalAttack(InputAction.CallbackContext context);
+        void OnPunch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnQSpecial(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnKick(InputAction.CallbackContext context);
     }
 }

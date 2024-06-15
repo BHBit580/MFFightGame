@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "NormalAttack",
+                    "name": "Punch",
                     "type": "Button",
                     "id": "af04a98e-bbe8-40c9-aee8-440e2976dead",
                     "expectedControlType": "Button",
@@ -54,6 +54,15 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "347c8b3b-83eb-4528-9e82-ff7360decfad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Kick",
+                    "type": "Button",
+                    "id": "f01cb494-6abf-4027-930d-226c8c6e2a24",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -123,7 +132,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "NormalAttack",
+                    "action": "Punch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -168,6 +177,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f1476ed-0b25-4b07-81c5-84dbac81c0eb",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Kick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
