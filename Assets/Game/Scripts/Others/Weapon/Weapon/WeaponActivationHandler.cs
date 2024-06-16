@@ -4,6 +4,7 @@ public class WeaponActivationHandler : MonoBehaviour
 {
     [SerializeField] private GameObject leftHand;
     [SerializeField] private GameObject rightHand;
+    [SerializeField] private GameObject rightLeg;
 
     
     public void EnableWeapon()
@@ -22,6 +23,11 @@ public class WeaponActivationHandler : MonoBehaviour
     {
         SetActive(leftHand, true);
         SetActive(rightHand, false);
+    }
+
+    public void EnableRightLeg()
+    {
+        SetActive(rightLeg, true);
     }
 
     public void DisableWeapon()

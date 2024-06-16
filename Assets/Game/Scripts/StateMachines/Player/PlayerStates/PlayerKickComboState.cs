@@ -16,6 +16,7 @@ public class PlayerKickComboState : PlayerBaseState
 
     public override void Enter()
     {
+        Debug.Log(stateMachine.Animator.speed);
         _timer = 0f;
         foreach (WeaponDamage weaponDamage in stateMachine.WeaponDamage)
         {
