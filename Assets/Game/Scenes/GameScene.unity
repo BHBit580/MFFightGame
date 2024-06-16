@@ -3644,7 +3644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
       propertyPath: <KickAttacks>k__BackingField.Array.data[0].<ComboWindowTime>k__BackingField
-      value: 0.5
+      value: 0.572
       objectReference: {fileID: 0}
     - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
       propertyPath: <KickAttacks>k__BackingField.Array.data[1].<ComboWindowTime>k__BackingField
@@ -3652,7 +3652,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
       propertyPath: <KickAttacks>k__BackingField.Array.data[2].<ComboWindowTime>k__BackingField
-      value: 0.497
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
+      propertyPath: <KickAttacks>k__BackingField.Array.data[0].<CrossFadeDuration>k__BackingField
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
+      propertyPath: <KickAttacks>k__BackingField.Array.data[1].<CrossFadeDuration>k__BackingField
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
+      propertyPath: <KickAttacks>k__BackingField.Array.data[2].<CrossFadeDuration>k__BackingField
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5565023132154072739, guid: a4e5a2ff3e7d13c4f8bb969d3554d3fc, type: 3}
       propertyPath: <KickAttacks>k__BackingField.Array.data[0].<MinimumNormalizedTime>k__BackingField
