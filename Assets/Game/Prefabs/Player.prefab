@@ -346,6 +346,7 @@ MonoBehaviour:
   <WeaponDamage>k__BackingField:
   - {fileID: 4802343050924627759}
   - {fileID: 3007521924318077065}
+  - {fileID: 6128529650493466700}
   <Feet>k__BackingField: {fileID: 31697544959727239}
   <Volume>k__BackingField: {fileID: 0}
   <CinemachineShake>k__BackingField: {fileID: 0}
@@ -385,20 +386,20 @@ MonoBehaviour:
   <KickAttacks>k__BackingField:
   - <AnimationName>k__BackingField: Kick1
     <CrossFadeDuration>k__BackingField: 0.1
-    <Damage>k__BackingField: 0
-    <KnockBack>k__BackingField: 0
+    <Damage>k__BackingField: 2
+    <KnockBack>k__BackingField: 1
     <MinimumNormalizedTime>k__BackingField: 0.631
     <ComboWindowTime>k__BackingField: 0.797
   - <AnimationName>k__BackingField: Kick2
     <CrossFadeDuration>k__BackingField: 0.1
-    <Damage>k__BackingField: 0
-    <KnockBack>k__BackingField: 0
+    <Damage>k__BackingField: 5
+    <KnockBack>k__BackingField: 1
     <MinimumNormalizedTime>k__BackingField: 0.453
     <ComboWindowTime>k__BackingField: 1
   - <AnimationName>k__BackingField: Kick3
     <CrossFadeDuration>k__BackingField: 0.1
-    <Damage>k__BackingField: 0
-    <KnockBack>k__BackingField: 0
+    <Damage>k__BackingField: 10
+    <KnockBack>k__BackingField: 5
     <MinimumNormalizedTime>k__BackingField: 0.873
     <ComboWindowTime>k__BackingField: 0.657
 --- !u!1 &8798583885752822732
@@ -454,9 +455,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
-  m_Height: 0.6
+  m_Height: 0.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &6128529650493466700
 MonoBehaviour:
   m_ObjectHideFlags: 0

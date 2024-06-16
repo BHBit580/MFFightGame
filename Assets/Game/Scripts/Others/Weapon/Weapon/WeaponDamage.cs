@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,10 +25,11 @@ public class WeaponDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other == myCollider) { return; }
-
+        Debug.Log("k");
         if (alreadyCollidedWith.Contains(other)) { return; }
-
+        Debug.Log("LLLLL");
         alreadyCollidedWith.Add(other);
 
 
@@ -74,5 +76,10 @@ public class WeaponDamage : MonoBehaviour
         this.shakeIntensity = shakeIntensity;
         this.shakeTime = shakeTime;
         this.cinemachineShake = cinemachineShake;
+    }
+
+    private void OnDisable()
+    {
+        alreadyCollidedWith.Clear();
     }
 }

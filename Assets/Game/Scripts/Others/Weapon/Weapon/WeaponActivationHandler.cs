@@ -34,6 +34,7 @@ public class WeaponActivationHandler : MonoBehaviour
     {
         SetActive(leftHand, false);
         SetActive(rightHand, false);
+        SetActive(rightLeg , false);
     }
     
     private void SetActive(GameObject hand, bool active)
