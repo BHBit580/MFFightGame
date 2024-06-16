@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputReader : MonoBehaviour , PlayerControls.IPlayerActionMapActions
@@ -24,6 +25,7 @@ public class InputReader : MonoBehaviour , PlayerControls.IPlayerActionMapAction
     public void OnMovement(InputAction.CallbackContext context)
     {
         MovementValue = context.ReadValue<Vector2>();
+        Debug.Log(MovementValue);
     }
     
     public void OnPunch(InputAction.CallbackContext context)

@@ -127,6 +127,17 @@
                 },
                 {
                     "name": "",
+                    "id": "60c94181-b657-4ec9-8db3-7108964b1486",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5518794f-e339-4c14-ae59-76910cd53ca5",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -140,6 +151,17 @@
                     "name": "",
                     "id": "6080a8dd-0415-4543-a33c-279ab00dfa63",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "263c2875-8256-4809-99af-cb72bc3c8487",
+                    "path": "<Joystick>/stick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -173,6 +195,17 @@
                     "name": "",
                     "id": "10faedb7-5f64-4bbd-a40b-62315d650bdc",
                     "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2fa2f6ba-8690-4d64-b71c-fa5dafbb63c2",
+                    "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

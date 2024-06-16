@@ -27,9 +27,7 @@ public class WeaponDamage : MonoBehaviour
     {
         
         if (other == myCollider) { return; }
-        Debug.Log("k");
         if (alreadyCollidedWith.Contains(other)) { return; }
-        Debug.Log("LLLLL");
         alreadyCollidedWith.Add(other);
 
 
