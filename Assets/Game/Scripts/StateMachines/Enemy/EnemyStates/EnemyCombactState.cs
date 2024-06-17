@@ -46,11 +46,6 @@ public class EnemyCombactState : EnemyBaseState
     
     private void PickRandomAttack()
     {
-        if (stateMachine.CharacterHealth.currentHealth <= 50)
-        {
-            stateMachine.SwitchState(new EnemySpecialFireAttackState(stateMachine));
-        }
-        
         currentAttack = stateMachine.BasicEnemyAttacks[Random.Range(0, stateMachine.BasicEnemyAttacks.Count)];
         CurrentAnimationHash = Animator.StringToHash(currentAttack.AnimationName);
     }
