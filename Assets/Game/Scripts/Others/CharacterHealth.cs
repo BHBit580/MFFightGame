@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
 {
-    public int currentHealth = 100;
+    public float currentHealth = 100;
     private bool isInvulnerable;
     
     public void SetInvulnerable(bool isInvulnerable)
@@ -16,8 +16,18 @@ public class CharacterHealth : MonoBehaviour
     public event Action CharacterGotNormalHitEvent;
     public event Action CharacterHealthDecreased;
 
-    public void DealDamage(int damageAmount , bool specialAttack = false)
+    public event Action OnDie;
+
+    public void DealDamage(float damageAmount , bool specialAttack = false)
     {
+        currentHealth = Mathf.Clamp(currentHealth, 0, 100);
+        if ((int)currentHealth == 0)
+        {
+            Debug.Log("fire");
+            OnDie?.Invoke();
+        }
+        
+        
         if (isInvulnerable) return;
         
         if (specialAttack == false)

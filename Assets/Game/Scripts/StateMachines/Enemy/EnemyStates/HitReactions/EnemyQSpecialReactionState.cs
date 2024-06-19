@@ -33,6 +33,8 @@ public class EnemyQSpecialReactionState : EnemyBaseState
         {
             stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
         }
+        
+        
     }
 
     public override void Exit()

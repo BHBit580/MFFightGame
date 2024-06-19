@@ -25,7 +25,6 @@ public class InputReader : MonoBehaviour , PlayerControls.IPlayerActionMapAction
     public void OnMovement(InputAction.CallbackContext context)
     {
         MovementValue = context.ReadValue<Vector2>();
-        Debug.Log(MovementValue);
     }
     
     public void OnPunch(InputAction.CallbackContext context)

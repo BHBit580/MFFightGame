@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,6 +14,9 @@ public class PlayerStateMachine : StateMachine
     [field: Header("{Dependencies}")]
     [field: SerializeField] public WeaponDamage[] WeaponDamage { get; private set; }
     [field: SerializeField] public Feet Feet { get; private set; }
+    [field: SerializeField] public VoidEventChannelSO PlayerDiedEvent { get; private set; }
+    [field: SerializeField] public CoolDownSystem CoolDownSystem { get; private set; }
+    [field: SerializeField] public Material DeathMaterial { get; private set; }
     [field: SerializeField] public Volume Volume { get; private set; }
     
     [field: Header("{Camera Shake Settings}")]
@@ -49,8 +53,32 @@ public class PlayerStateMachine : StateMachine
         Rigidbody = GetComponent<Rigidbody>();
         CharacterHealth = GetComponent<CharacterHealth>();
         
+        CharacterHealth.CharacterGotNormalHitEvent += HandleTakeDamage;
+        CharacterHealth.OnDie += HandleDeath;
+        
         SwitchState(new PlayerFreeLookState(this));
     }
     
+    private void HandleTakeDamage()
+    {
+        if (CharacterHealth.currentHealth <= 0)
+        {
+            CharacterHealth.OnDie -= HandleTakeDamage;
+            return;
+        }
+        
+        SwitchState(new PlayerHitReaction(this));
+    }
     
+    private void HandleDeath()
+    {
+        SwitchState(new PlayerDeadState(this));
+        CharacterHealth.OnDie -= HandleDeath;
+    }
+
+    private void OnDestroy()
+    {
+        CharacterHealth.CharacterGotNormalHitEvent -= HandleTakeDamage;
+        CharacterHealth.OnDie -= HandleDeath;
+    }
 }

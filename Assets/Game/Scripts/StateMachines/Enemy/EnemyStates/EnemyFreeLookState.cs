@@ -16,7 +16,7 @@ public class EnemyFreeLookState : EnemyBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(WalkingHash , CrossFadeDuration);
-        stateMachine.CharacterHealth.CharacterGotNormalHitEvent += GoToNormalHitState;
+
         stateMachine.QSpecialAnimationEvent.RegisterListener(GoToQSpecialHitState);
     }
 
@@ -36,11 +36,6 @@ public class EnemyFreeLookState : EnemyBaseState
         stateMachine.transform.position = new Vector3(stateMachine.transform.position.x, stateMachine.transform.position.y, 0);
     }
     
-    private void GoToNormalHitState()
-    {
-        stateMachine.SwitchState(new EnemyNHitReactionState(stateMachine));
-    }
-    
     private void GoToQSpecialHitState()
     {
         stateMachine.SwitchState(new EnemyQSpecialReactionState(stateMachine));
@@ -48,7 +43,6 @@ public class EnemyFreeLookState : EnemyBaseState
 
     public override void Exit()
     {
-        stateMachine.CharacterHealth.CharacterGotNormalHitEvent -= GoToNormalHitState;
         stateMachine.QSpecialAnimationEvent.UnregisterListener(GoToQSpecialHitState);
     }
 }

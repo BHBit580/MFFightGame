@@ -14,7 +14,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.QSpecialAttack += SwitchToQSpecialState;
         stateMachine.InputReader.JumpEvent += SwitchToJumpEvent;
-        stateMachine.CharacterHealth.CharacterGotNormalHitEvent += SwitchToHitReactionState;
+        
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0f);
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
@@ -79,10 +79,7 @@ public class PlayerFreeLookState : PlayerBaseState
         }
     }
 
-    private void SwitchToHitReactionState()
-    {
-        stateMachine.SwitchState(new PlayerHitReaction(stateMachine));
-    }
+    
     
     #endregion
     
@@ -90,7 +87,6 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.JumpEvent -= SwitchToJumpEvent;
         stateMachine.InputReader.QSpecialAttack -= SwitchToQSpecialState;
-        stateMachine.CharacterHealth.CharacterGotNormalHitEvent -= SwitchToHitReactionState;
     }
 
     

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombactState : EnemyBaseState
+public class EnemyCombactState : EnemyBaseState 
 {
+    private readonly int FightIdle = Animator.StringToHash("FightIdle");
+    
     private int CurrentAnimationHash;
     private const float CrossFadeDuration = 0.1f;
     private EnemyAttack currentAttack;
@@ -17,15 +19,9 @@ public class EnemyCombactState : EnemyBaseState
     {
         PickRandomAttack();
         
-        CurrentAnimationHash = Animator.StringToHash(stateMachine.BasicEnemyAttacks[0].AnimationName);
-        stateMachine.CharacterHealth.CharacterGotNormalHitEvent += SwitchToHitReactionState;
+        CurrentAnimationHash = Animator.StringToHash(stateMachine.BasicEnemyAttacks[0].AnimationName);            //First attack animation
         
-        foreach (WeaponDamage weaponDamage in stateMachine.WeaponDamage)
-        {
-            weaponDamage.SetVfx(stateMachine.Vfx , stateMachine.VfxOffset);
-            weaponDamage.SetAttackValues( currentAttack.Damage, currentAttack.KnockBack);
-            weaponDamage.SetShakeValues(stateMachine.ShakeIntensity, stateMachine.ShakeTime, stateMachine.CinemachineShake);
-        }
+        SetWeaponValues();
         
         stateMachine.Animator.CrossFadeInFixedTime(CurrentAnimationHash, CrossFadeDuration);
     }
@@ -35,28 +31,48 @@ public class EnemyCombactState : EnemyBaseState
         if (CheckAnimationCompleted(stateMachine.Animator, CurrentAnimationHash))
         {
             PickRandomAttack();
+            SetWeaponValues();
             stateMachine.Animator.Play(CurrentAnimationHash, 0, 0);
         }
 
-        if (DistanceBetweenPlayerAndEnemy() > stateMachine.AttackMaxRange)
-        {
-            stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
-        }
+        SwitchToOtherStates();
     }
+
     
     private void PickRandomAttack()
     {
         currentAttack = stateMachine.BasicEnemyAttacks[Random.Range(0, stateMachine.BasicEnemyAttacks.Count)];
         CurrentAnimationHash = Animator.StringToHash(currentAttack.AnimationName);
     }
-    
-    private void SwitchToHitReactionState()
-    {
-        stateMachine.SwitchState(new EnemyNHitReactionState(stateMachine));
-    }
-
+   
     public override void Exit()
     {
-        stateMachine.CharacterHealth.CharacterGotNormalHitEvent -= SwitchToHitReactionState;
+
     }
+    
+    
+    private void SetWeaponValues()
+    {
+        foreach (WeaponDamage weaponDamage in stateMachine.WeaponDamage)
+        {
+            weaponDamage.SetVfx(stateMachine.Vfx , stateMachine.VfxOffset);
+            weaponDamage.SetAttackValues( currentAttack.Damage, currentAttack.KnockBack);
+            weaponDamage.SetShakeValues(stateMachine.ShakeIntensity, stateMachine.ShakeTime, stateMachine.CinemachineShake);
+        }
+    }
+
+    private void SwitchToOtherStates()
+    {
+        if (DistanceBetweenPlayerAndEnemy() > stateMachine.AttackMaxRange)
+        {
+            stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
+            
+            
+            if (Random.Range(0 , 3) == 2)
+            {
+                stateMachine.SwitchState(new EnemySpecialFireAttackState(stateMachine));
+            }
+        }
+    }
+    
 }

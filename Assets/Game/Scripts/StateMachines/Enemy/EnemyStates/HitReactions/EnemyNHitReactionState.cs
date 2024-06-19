@@ -7,7 +7,7 @@ public class EnemyNHitReactionState : EnemyBaseState , IHasCoolDown
     private int HitReactionHash = Animator.StringToHash("Hit1");
     private const float CrossFadeDuration = 0.1f;
     private int Id = 1012;
-    private float coolDownTime = 1f;
+    private float coolDownTime = 0.5f;
 
     
     public EnemyNHitReactionState(EnemyStateMachine stateMachine) : base(stateMachine)

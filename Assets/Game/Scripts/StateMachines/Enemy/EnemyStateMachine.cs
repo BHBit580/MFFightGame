@@ -7,6 +7,10 @@ public class EnemyStateMachine : StateMachine
 {
     [field: Header("Dependencies")]
     [field: SerializeField] public GameObject Player { get; private set; }
+    [field: SerializeField] public VoidEventChannelSO PlayerDiedEvent { get; private set; }
+    [field: SerializeField] public VoidEventChannelSO EnemyDiedEvent { get; private set; }
+    [field: SerializeField] public Material DeathMaterial { get; private set; }
+
     [field: SerializeField] public GameObject SpecialBall { get; private set; }
     [field: SerializeField] public CoolDownSystem CoolDownSystem { get; private set; }
     [field: SerializeField] public WeaponDamage[] WeaponDamage { get; private set; }
@@ -15,9 +19,6 @@ public class EnemyStateMachine : StateMachine
     
     [field: Header("Special Attack Settings")]
     [field: SerializeField] public Vector3 SpecialAttackOffset { get; private set; }
-    [field: SerializeField] public float SpecialAttackRange { get; private set; }
-    [field: SerializeField] public float SpecialAttackBackwardSpeed { get; private set; }
-    [field: SerializeField] public float SpecialAttackDamage { get; private set; } 
     
     [field: Header("Camera Shake Settings")]
     [field: SerializeField] public CinemachineShake CinemachineShake { get; private set; }
@@ -48,6 +49,39 @@ public class EnemyStateMachine : StateMachine
         Rigidbody = GetComponent<Rigidbody>();
         CharacterHealth = GetComponent<CharacterHealth>();
         Animator = GetComponent<Animator>();
+        CharacterHealth.OnDie += HandleDeath;
+        CharacterHealth.CharacterGotNormalHitEvent += HandleHit;
+        PlayerDiedEvent.RegisterListener(ShowWinAnimation);
         SwitchState(new EnemyInitialState(this));
+    }
+
+    private void HandleHit()
+    {
+        if (CharacterHealth.currentHealth <= 0)
+        {
+            CharacterHealth.OnDie -= HandleHit;
+            return;
+        }
+        
+        SwitchState(new EnemyNHitReactionState(this));
+    }
+
+    private void ShowWinAnimation()
+    {
+        SwitchState(new EnemyWinState(this));
+        PlayerDiedEvent.UnregisterListener(ShowWinAnimation);
+    }
+    
+    private void HandleDeath()
+    {
+        SwitchState(new EnemyDeadState(this));
+        CharacterHealth.OnDie -= HandleDeath;
+    }
+
+    private void OnDestroy()
+    {
+        CharacterHealth.CharacterGotNormalHitEvent -= HandleHit;
+        CharacterHealth.OnDie -= HandleDeath;
+        PlayerDiedEvent.UnregisterListener(ShowWinAnimation);
     }
 }

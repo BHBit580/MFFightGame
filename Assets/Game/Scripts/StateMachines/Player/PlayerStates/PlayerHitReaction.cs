@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHitReaction : PlayerBaseState
+public class PlayerHitReaction : PlayerBaseState , IHasCoolDown
 {
     private int HitReactionHash = Animator.StringToHash("Hit");
     private const float CrossFadeDuration = 0.1f;
+    private int Id = 4018;
+    private float coolDownTime = 0.2f;
 
     public PlayerHitReaction(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -13,7 +15,17 @@ public class PlayerHitReaction : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Animator.CrossFadeInFixedTime(HitReactionHash, CrossFadeDuration);
+        bool isOnCooldown = stateMachine.CoolDownSystem.IsInCoolDown(Id);
+    
+        if (!isOnCooldown)
+        {
+            stateMachine.Animator.CrossFadeInFixedTime(HitReactionHash, CrossFadeDuration);
+            stateMachine.CoolDownSystem.StartCoolDown(this);
+        }
+        else
+        {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+        }
     }
 
     public override void Tick(float deltaTime)
@@ -28,4 +40,7 @@ public class PlayerHitReaction : PlayerBaseState
     {
         
     }
+
+    public int ID => Id;
+    public float CoolDownDuration => coolDownTime;
 }

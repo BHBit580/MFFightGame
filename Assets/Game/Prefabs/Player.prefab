@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &317052485523194190
 Transform:
   m_ObjectHideFlags: 0
@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 5878795097819641033}
   - component: {fileID: 9026228984149030641}
   - component: {fileID: 8997874915972420222}
+  - component: {fileID: 8812040696460896485}
   - component: {fileID: 1477712058146116661}
   - component: {fileID: 1670027176840290600}
   - component: {fileID: 5565023132154072739}
@@ -303,6 +304,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cc4a4002136e749a1836f268ee25f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8812040696460896485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091981238321835246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053ad096aba05c54faa23528162eb0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: 0
+  maxX: 0
 --- !u!114 &1477712058146116661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +363,7 @@ MonoBehaviour:
   - {fileID: 3007521924318077065}
   - {fileID: 6128529650493466700}
   <Feet>k__BackingField: {fileID: 31697544959727239}
+  <DeathMaterial>k__BackingField: {fileID: 2100000, guid: 21f19cdaf7a473e41a8e55e39f73d611, type: 2}
   <Volume>k__BackingField: {fileID: 0}
   <CinemachineShake>k__BackingField: {fileID: 0}
   <ShakeIntensity>k__BackingField: 2
@@ -361,7 +377,7 @@ MonoBehaviour:
   <PunchAttacks>k__BackingField:
   - <AnimationName>k__BackingField: Punch1
     <CrossFadeDuration>k__BackingField: 0.1
-    <Damage>k__BackingField: 5
+    <Damage>k__BackingField: 100
     <KnockBack>k__BackingField: 1
     <MinimumNormalizedTime>k__BackingField: 0.264
     <ComboWindowTime>k__BackingField: 0.5
@@ -419,7 +435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4479460929317354337
 Transform:
   m_ObjectHideFlags: 0
@@ -538,6 +554,10 @@ PrefabInstance:
     - target: {fileID: 6561282888786421983, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
       propertyPath: m_Name
       value: WeaponLogicLeftHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561282888786421983, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 597870689351067711, guid: ad19fc5716cf348488b8defe44c04daf, type: 3}

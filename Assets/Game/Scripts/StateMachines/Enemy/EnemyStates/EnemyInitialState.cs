@@ -17,7 +17,7 @@ public class EnemyInitialState : EnemyBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(FightIdle , CrossFadeDuration);
-        int randomTime = Random.Range(1, 3);
+        int randomTime = Random.Range(2, 4);
         DOVirtual.DelayedCall(randomTime, () => {
             stateMachine.SwitchState(new EnemyFreeLookState(stateMachine));
         });
