@@ -7,6 +7,7 @@ using UnityEngine;
 public class MoveSpecialBall : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    [SerializeField] private float damage = 15f;
     [SerializeField] private VoidEventChannelSO QSpecialAnimationEvent;
     private GameObject player;
     private Tween myTween;
@@ -26,7 +27,7 @@ public class MoveSpecialBall : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             QSpecialAnimationEvent.RaiseEvent();
-            other.gameObject.GetComponent<CharacterHealth>().DealDamage(50 , true);
+            other.gameObject.GetComponent<CharacterHealth>().DealDamage(damage , true);
             myTween.Kill();
             Destroy(gameObject , 0.1f);
         }

@@ -14,9 +14,11 @@ public class PauseButton : MonoBehaviour
     [SerializeField] private float gameTimeScale = 0.002f;
 
     private ColorAdjustments colorAdjustments;
+    private Button button;
 
     private void Awake()
     {
+        button = GetComponent<Button>();
         if (volume.profile.TryGet(out ColorAdjustments colorAdjustments))
         {
             this.colorAdjustments = colorAdjustments;
@@ -34,7 +36,7 @@ public class PauseButton : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(OnClickPauseButton);
+        button.onClick.AddListener(OnClickPauseButton);
     }
 
     private void OnClickPauseButton()
@@ -44,5 +46,10 @@ public class PauseButton : MonoBehaviour
         Time.timeScale = gameTimeScale;
         colorAdjustments.saturation.value = -100f;
         gameObject.SetActive(false);
+    }
+    
+    private void OnDestroy()
+    {
+        button.onClick.RemoveListener(OnClickPauseButton);
     }
 }

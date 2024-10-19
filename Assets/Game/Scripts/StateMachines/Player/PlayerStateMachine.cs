@@ -54,6 +54,7 @@ public class PlayerStateMachine : StateMachine
         CharacterHealth = GetComponent<CharacterHealth>();
         
         CharacterHealth.CharacterGotNormalHitEvent += HandleTakeDamage;
+        InputReader.QSpecialAttack += SwitchToQSpecialState;
         CharacterHealth.OnDie += HandleDeath;
         
         SwitchState(new PlayerFreeLookState(this));
@@ -75,10 +76,16 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerDeadState(this));
         CharacterHealth.OnDie -= HandleDeath;
     }
+    
+    private void SwitchToQSpecialState()
+    {
+        SwitchState(new PlayerQSpecialAttackState(this));
+    }
 
     private void OnDestroy()
     {
         CharacterHealth.CharacterGotNormalHitEvent -= HandleTakeDamage;
         CharacterHealth.OnDie -= HandleDeath;
+        InputReader.QSpecialAttack -= SwitchToQSpecialState;
     }
 }

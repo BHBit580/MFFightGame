@@ -57,7 +57,6 @@ QualitySettings:
     excludedTargetPlatforms:
     - Nintendo Switch
     - Standalone
-    - Android
     - iPhone
     - PS4
     - PS5

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
@@ -50,5 +51,9 @@ public class CoolDownSpecialSlider : MonoBehaviour
             button.interactable = true;
         }
     }
-    
+
+    private void OnDestroy()
+    {
+        button.onClick.RemoveListener(ResetTimer);
+    }
 }

@@ -6,7 +6,7 @@ public class EnemyCombactState : EnemyBaseState
 {
     private readonly int FightIdle = Animator.StringToHash("FightIdle");
     
-    private int CurrentAnimationHash;
+    private int CurrentHASH;
     private const float CrossFadeDuration = 0.1f;
     private EnemyAttack currentAttack;
     
@@ -17,32 +17,47 @@ public class EnemyCombactState : EnemyBaseState
     
     public override void Enter()
     {
-        PickRandomAttack();
-        
-        CurrentAnimationHash = Animator.StringToHash(stateMachine.BasicEnemyAttacks[0].AnimationName);            //First attack animation
-        
-        SetWeaponValues();
-        
-        stateMachine.Animator.CrossFadeInFixedTime(CurrentAnimationHash, CrossFadeDuration);
+        PlayFirstAttackAnimation();
     }
-
+    
+    private void PlayFirstAttackAnimation()
+    {
+        currentAttack = stateMachine.BasicEnemyAttacks[0];
+        CurrentHASH = Animator.StringToHash(currentAttack.AnimationName);            
+        SetWeaponValues();
+        stateMachine.Animator.CrossFadeInFixedTime(CurrentHASH, CrossFadeDuration);
+    }
+    
     public override void Tick(float deltaTime)
     {
-        if (CheckAnimationCompleted(stateMachine.Animator, CurrentAnimationHash))
+        if (CheckAnimationCompleted(stateMachine.Animator, CurrentHASH))
         {
-            PickRandomAttack();
-            SetWeaponValues();
-            stateMachine.Animator.Play(CurrentAnimationHash, 0, 0);
+           AttackDecisionMaker();
         }
 
         SwitchToOtherStates();
     }
 
+    private void AttackDecisionMaker()
+    {
+        int random = Random.Range(0, 4);
+        if (random == 2)
+        {
+            stateMachine.SwitchState(new EnemySpecialFireAttackState(stateMachine));
+        }
+        else
+        {
+            DoRandomAttack();
+        }
+    }
     
-    private void PickRandomAttack()
+    
+    private void DoRandomAttack()
     {
         currentAttack = stateMachine.BasicEnemyAttacks[Random.Range(0, stateMachine.BasicEnemyAttacks.Count)];
-        CurrentAnimationHash = Animator.StringToHash(currentAttack.AnimationName);
+        CurrentHASH = Animator.StringToHash(currentAttack.AnimationName);
+        SetWeaponValues();
+        stateMachine.Animator.CrossFadeInFixedTime(currentAttack.AnimationName, CrossFadeDuration);
     }
    
     public override void Exit()

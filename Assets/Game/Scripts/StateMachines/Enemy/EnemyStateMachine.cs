@@ -51,6 +51,7 @@ public class EnemyStateMachine : StateMachine
         Animator = GetComponent<Animator>();
         CharacterHealth.OnDie += HandleDeath;
         CharacterHealth.CharacterGotNormalHitEvent += HandleHit;
+        QSpecialAnimationEvent.RegisterListener(QSpecialHitReactionState);
         PlayerDiedEvent.RegisterListener(ShowWinAnimation);
         SwitchState(new EnemyInitialState(this));
     }
@@ -64,6 +65,11 @@ public class EnemyStateMachine : StateMachine
         }
         
         SwitchState(new EnemyNHitReactionState(this));
+    }
+
+    private void QSpecialHitReactionState()
+    {
+        SwitchState(new EnemyQSpecialReactionState(this));
     }
 
     private void ShowWinAnimation()
@@ -80,6 +86,7 @@ public class EnemyStateMachine : StateMachine
 
     private void OnDestroy()
     {
+        QSpecialAnimationEvent.UnregisterListener(QSpecialHitReactionState);
         CharacterHealth.CharacterGotNormalHitEvent -= HandleHit;
         CharacterHealth.OnDie -= HandleDeath;
         PlayerDiedEvent.UnregisterListener(ShowWinAnimation);

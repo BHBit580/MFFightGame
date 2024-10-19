@@ -10,6 +10,7 @@ public class HealthUI : MonoBehaviour
 
     private void Awake()
     {
+        UpdateHealthUI();
         characterHealth.CharacterHealthDecreased += UpdateHealthUI;
     }
 

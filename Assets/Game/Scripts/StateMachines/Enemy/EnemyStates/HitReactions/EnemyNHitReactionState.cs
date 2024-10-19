@@ -41,6 +41,7 @@ public class EnemyNHitReactionState : EnemyBaseState , IHasCoolDown
     {
         
     }
+    
 
     public int ID => Id;
     public float CoolDownDuration => coolDownTime;

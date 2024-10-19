@@ -12,7 +12,6 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.InputReader.QSpecialAttack += SwitchToQSpecialState;
         stateMachine.InputReader.JumpEvent += SwitchToJumpEvent;
         
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0f);
@@ -43,10 +42,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     #region SwitchingStates
     
-    private void SwitchToQSpecialState()
-    {
-        stateMachine.SwitchState(new PlayerQSpecialAttackState(stateMachine));
-    }
+    
 
     private void SwitchToJumpEvent()
     {
@@ -86,7 +82,6 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.JumpEvent -= SwitchToJumpEvent;
-        stateMachine.InputReader.QSpecialAttack -= SwitchToQSpecialState;
     }
 
     
